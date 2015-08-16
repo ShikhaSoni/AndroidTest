@@ -6,6 +6,4 @@
     tools:context="com.apppartner.androidprogrammertest.AnimationActivity"
     android:background="@drawable/bg_animation">
 
-    <include layout="@layout/toolbar"/>
-
 </RelativeLayout>

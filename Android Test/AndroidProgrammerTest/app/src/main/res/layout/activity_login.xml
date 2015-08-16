@@ -6,9 +6,6 @@
     tools:context="com.apppartner.androidprogrammertest.LoginActivity"
     android:background="@drawable/bg_login">
 
-    <include layout="@layout/toolbar"
-        android:id="@+id/include" />
-
     <ImageButton
         android:layout_width="250dp"
         android:layout_height="50dp"
@@ -19,6 +16,28 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="99dp" />
+    <EditText
+        android:id="@+id/Password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_marginTop="200dp"
+        android:layout_alignLeft="@+id/imageButton"
+        android:layout_alignStart="@+id/imageButton"
+        android:layout_alignRight="@+id/imageButton"
+        android:layout_alignEnd="@+id/imageButton">
+    </EditText>
 
+    <EditText
+        android:id="@+id/Username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_marginTop="100dp"
+        android:layout_alignLeft="@+id/imageButton"
+        android:layout_alignStart="@+id/imageButton"
+        android:layout_alignRight="@+id/imageButton"
+        android:layout_alignEnd="@+id/imageButton">
+    </EditText>
 
 </RelativeLayout>
