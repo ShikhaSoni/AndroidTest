@@ -15,7 +15,8 @@
         android:background="#0439ff39"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="99dp" />
+        android:layout_marginBottom="99dp"
+        android:onClick="onLoginButtonPress"/>
 
     <EditText
         android:id="@+id/Password"

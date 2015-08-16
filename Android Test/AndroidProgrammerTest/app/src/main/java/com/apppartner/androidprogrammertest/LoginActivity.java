@@ -25,17 +25,25 @@ import java.util.List;
 
 public class LoginActivity extends ActionBarActivity
 {
-     String username;
-     String password;
+    String username;
+    String password;
     ImageButton loginb;
     EditText passwordt;
     EditText usernamet;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void onLoginButtonPress(){
         loginb= (ImageButton)findViewById(R.id.imageButton);
         passwordt=(EditText)findViewById(R.id.Password);
         usernamet=(EditText)findViewById(R.id.Username);
@@ -54,7 +62,7 @@ public class LoginActivity extends ActionBarActivity
 
                         try {
                             // Add your data
-                            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+                            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
                             nameValuePairs.add(new BasicNameValuePair(username,password));
 
                             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
@@ -70,13 +78,6 @@ public class LoginActivity extends ActionBarActivity
                     }
                 });
 
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 
 }
