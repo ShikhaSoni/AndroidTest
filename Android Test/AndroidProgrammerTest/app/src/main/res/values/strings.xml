@@ -10,6 +10,8 @@
     <string name="title_activity_animation">Animation</string>
     <string name="CodingTask">CODING TASKS</string>
     <string name="LoginPageTitle">Login</string>
-    <string name="Password">password</string>string>
+    <string name="Password">password</string>
+    <string name="FadeButton">FadeButton</string>
+    <string name="Logo">AppLogo</string>string>
 
 </resources>

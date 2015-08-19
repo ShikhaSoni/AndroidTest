@@ -16,7 +16,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="99dp"
-        android:onClick="onLoginButtonPress"/>
+       />
 
     <EditText
         android:id="@+id/Password"
@@ -27,7 +27,9 @@
         android:layout_alignLeft="@+id/imageButton"
         android:layout_alignStart="@+id/imageButton"
         android:layout_alignRight="@+id/imageButton"
-        android:layout_alignEnd="@+id/imageButton">
+        android:layout_alignEnd="@+id/imageButton"
+        android:background="@android:drawable/edit_text"
+        android:hint="password">
     </EditText>
 
     <EditText
@@ -39,7 +41,9 @@
         android:layout_alignLeft="@+id/imageButton"
         android:layout_alignStart="@+id/imageButton"
         android:layout_alignRight="@+id/imageButton"
-        android:layout_alignEnd="@+id/imageButton">
+        android:layout_alignEnd="@+id/imageButton"
+        android:background="@android:drawable/edit_text"
+        android:hint="username">
     </EditText>
 
 </RelativeLayout>
