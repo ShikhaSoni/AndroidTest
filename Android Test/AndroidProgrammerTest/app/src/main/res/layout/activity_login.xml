@@ -8,22 +8,22 @@
     android:parentActivityName="activity_main">
 
     <ImageButton
+        android:id="@+id/imageButton"
+        android:src="@drawable/btn_login"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:id="@+id/imageButton"
-        android:scaleType="fitXY"
-        android:src="@drawable/btn_login"
-        android:background="#0439ff39"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="99dp"
+        android:scaleType="fitXY"
+        android:background="#0439ff39"
        />
 
     <EditText
         android:id="@+id/Password"
+        android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
         android:layout_marginTop="200dp"
         android:layout_alignLeft="@+id/imageButton"
         android:layout_alignStart="@+id/imageButton"
@@ -35,9 +35,9 @@
 
     <EditText
         android:id="@+id/Username"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
         android:layout_marginTop="100dp"
         android:layout_alignLeft="@+id/imageButton"
         android:layout_alignStart="@+id/imageButton"

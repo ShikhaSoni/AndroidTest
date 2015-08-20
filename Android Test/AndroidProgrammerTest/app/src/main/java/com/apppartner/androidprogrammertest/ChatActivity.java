@@ -1,15 +1,11 @@
 package com.apppartner.androidprogrammertest;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
 import com.apppartner.androidprogrammertest.adapters.ChatsArrayAdapter;
 import com.apppartner.androidprogrammertest.models.ChatData;
 import org.json.JSONArray;
@@ -34,11 +30,9 @@ public class ChatActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         listView = (ListView) findViewById(R.id.listView);
         chatDataArrayList = new ArrayList<ChatData>();
-
         try
         {
             String chatFileData = loadChatFile();
@@ -50,7 +44,7 @@ public class ChatActivity extends ActionBarActivity
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 ChatData chatData = new ChatData(jsonObject);
                 chatDataArrayList.add(chatData);
-        }
+            }
         }
         catch (Exception e)
         {
@@ -58,11 +52,9 @@ public class ChatActivity extends ActionBarActivity
         }
         chatsArrayAdapter = new ChatsArrayAdapter(this, chatDataArrayList);
         listView.setAdapter(chatsArrayAdapter);
-
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch(item.getItemId()){
             case android.R.id.home:
                 Intent intent = new Intent(this,MainActivity.class);
@@ -81,7 +73,6 @@ public class ChatActivity extends ActionBarActivity
 
     private String loadChatFile() throws IOException
     {
-
         InputStream inputStream = getResources().openRawResource(R.raw.chat_data);
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -101,5 +92,4 @@ public class ChatActivity extends ActionBarActivity
 
         return stringBuilder.toString();
     }
-
 }

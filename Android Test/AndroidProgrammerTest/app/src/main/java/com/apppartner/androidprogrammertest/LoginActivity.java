@@ -42,20 +42,18 @@ public class LoginActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Typeface typ=Typeface.createFromAsset(getAssets(), "Jelloween - Machinato.ttf");
-        EditText ed1=(EditText)findViewById(R.id.Username);
-        ed1.setTypeface(typ);
-        EditText ed2=(EditText)findViewById(R.id.Password);
-        ed1.setTypeface(typ);
+        usernamet=(EditText)findViewById(R.id.Username);
+        usernamet.setTypeface(typ);
+        passwordt=(EditText)findViewById(R.id.Password);
+        passwordt.setTypeface(typ);
         loginb= (ImageButton)findViewById(R.id.imageButton);
         loginb.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View view) {
                         System.out.println("Button pressed");
-                        passwordt = (EditText) findViewById(R.id.Password);
-                        usernamet = (EditText) findViewById(R.id.Username);
                         System.out.println(usernamet + " : " + passwordt);
                         dialog = ProgressDialog.show(LoginActivity.this, "",
                                 "Validating user...", true);
@@ -66,14 +64,10 @@ public class LoginActivity extends ActionBarActivity
                         }).start();
                     }
                 });
-
-      /*  ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);*/
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch(item.getItemId()){
             case android.R.id.home:
                 Intent intent = new Intent(this,MainActivity.class);
@@ -116,12 +110,10 @@ public class LoginActivity extends ActionBarActivity
                         Toast.makeText(LoginActivity.this,"Login Success, Time taken:"+difference+"ms", Toast.LENGTH_SHORT).show();
                     }
                 });
-
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }else{
                 showAlert();
             }
-
         }catch(Exception e){
             dialog.dismiss();
             System.out.println("Exception : " + e.getMessage());

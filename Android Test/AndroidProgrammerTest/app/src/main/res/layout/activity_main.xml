@@ -12,57 +12,58 @@
 
     <ImageButton
         style="?android:attr/buttonStyleSmall"
+        android:id="@+id/button1"
+        android:src="@drawable/btn_main_chat"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:adjustViewBounds="true"
-        android:src="@drawable/btn_main_chat"
-        android:id="@+id/button1"
         android:onClick="onChatButtonClicked"
         android:clickable="true"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:visibility="visible"
         android:background="#0339ff39"
-        android:layout_marginTop="170dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+         />
 
     <ImageButton
+        android:id="@+id/button2"
+        android:src="@drawable/btn_main_login"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/btn_main_login"
-        android:id="@+id/button2"
-        android:onClick="onLoginButtonClicked"
-        android:background="#0239ff39"
         android:layout_below="@+id/button1"
         android:layout_alignLeft="@+id/button1"
         android:layout_alignStart="@+id/button1"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:scaleType="fitXY"
+        android:onClick="onLoginButtonClicked"
+        android:background="#0239ff39"/>
 
     <ImageButton
+        android:id="@+id/button3"
+        android:src="@drawable/btn_main_animation"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/btn_main_animation"
-        android:id="@+id/button3"
-        android:onClick="onAnimationTestButtonClicked"
-        android:clickable="true"
-        android:background="#0639ff39"
         android:layout_below="@+id/button2"
         android:layout_alignLeft="@+id/button2"
         android:layout_alignStart="@+id/button2"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:scaleType="fitXY"
+        android:onClick="onAnimationTestButtonClicked"
+        android:clickable="true"
+        android:background="#0639ff39"/>
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/CodingTask"
-        android:id="@+id/textView"
-        android:textColor="#ffffff"
-        android:textSize="10pt"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="125dp" />
+        android:layout_marginTop="125dp"
+        android:text="@string/CodingTask"
+        android:textColor="#ffffff"
+        android:textSize="10pt"/>
 
 </RelativeLayout>

@@ -25,9 +25,7 @@ public class AnimationActivity extends ActionBarActivity implements View.OnTouch
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animation);
-
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         image=(ImageView)findViewById(R.id.imageView);
         image.setOnTouchListener(this);
         ImageButton btn=(ImageButton)findViewById(R.id.imageButton2);
@@ -35,22 +33,17 @@ public class AnimationActivity extends ActionBarActivity implements View.OnTouch
             @Override
             public void onClick(View view) {
                 count++;
-                //ImageView myView = (ImageView)splashDialog.findViewById(R.id.splashscreenImage);
-
                 ObjectAnimator fadeOut = ObjectAnimator.ofFloat(image, "alpha",  1f, .3f);
                 fadeOut.setDuration(2000);
                 ObjectAnimator fadeIn = ObjectAnimator.ofFloat(image, "alpha", .3f, 1f);
                 fadeIn.setDuration(2000);
-
                 final AnimatorSet mAnimationSet = new AnimatorSet();
-
                 mAnimationSet.play(fadeIn).after(fadeOut);
-
                 mAnimationSet.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
                         super.onAnimationEnd(animation);
-                        mAnimationSet.start();
+                       mAnimationSet.start();
                     }
                 });
                 if(count%2!=0){
@@ -59,13 +52,11 @@ public class AnimationActivity extends ActionBarActivity implements View.OnTouch
                 else{
                     mAnimationSet.end();
                 }
-
             }
         });
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch(item.getItemId()){
             case android.R.id.home:
                 Intent intent = new Intent(this,MainActivity.class);
