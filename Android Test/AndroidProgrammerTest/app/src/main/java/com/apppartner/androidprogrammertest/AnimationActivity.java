@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 
 public class AnimationActivity extends ActionBarActivity implements View.OnTouchListener
@@ -20,6 +22,8 @@ public class AnimationActivity extends ActionBarActivity implements View.OnTouch
     boolean moving =false;
     ImageView image;
     int count=0;
+    float dX, dY;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -66,26 +70,32 @@ public class AnimationActivity extends ActionBarActivity implements View.OnTouch
         return true;
     }
 
-    @Override
-    public boolean onTouch(View v, MotionEvent me){
-        switch(me.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                moving= true;
-                break;
-            case MotionEvent.ACTION_MOVE:
-                if(moving){
-                    x=me.getX();
-                    y=me.getY();
-                    v.setX(x);
-                    v.setY(y);
-                }
-                break;
-            case MotionEvent.ACTION_UP:
-                moving = false;
-                break;
-        }
-        return true;
+  @Override
+   public boolean onTouch(View view, MotionEvent event){
+
+       switch (event.getActionMasked()) {
+
+        case MotionEvent.ACTION_DOWN:
+
+            dX = view.getX() - event.getRawX();
+            dY = view.getY() - event.getRawY();
+            break;
+
+        case MotionEvent.ACTION_MOVE:
+
+            view.animate()
+                    .x(event.getRawX() + dX)
+                    .y(event.getRawY() + dY)
+                    .setDuration(0)
+                    .start();
+            break;
+        default:
+            return false;
     }
+     // _root.invalidate();
+      return true;
+  }
+
     @Override
     public void onBackPressed()
     {

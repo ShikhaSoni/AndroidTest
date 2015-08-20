@@ -31,6 +31,7 @@
         android:layout_marginTop="10dp"
         android:paddingLeft="20dp"
         android:paddingRight="@dimen/activity_horizontal_margin"
+
          />
 
     <TextView

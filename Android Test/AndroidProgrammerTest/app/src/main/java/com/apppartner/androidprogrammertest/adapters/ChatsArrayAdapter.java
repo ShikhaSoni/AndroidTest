@@ -58,7 +58,6 @@ public class ChatsArrayAdapter extends ArrayAdapter<ChatData>
         chatCell.usernameTextView.setText(chatData.username);
         chatCell.messageTextView.setText(chatData.message);
         Picasso.with(getContext()).load(chatData.avatarURL).transform(new CircleTransform()).into(chatCell.displayPicture);
-
         return convertView;
 
     }
