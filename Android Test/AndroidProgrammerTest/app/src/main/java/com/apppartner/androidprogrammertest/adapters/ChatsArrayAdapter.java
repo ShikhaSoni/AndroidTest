@@ -1,5 +1,4 @@
 package com.apppartner.androidprogrammertest.adapters;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,6 +16,8 @@ import android.widget.TextView;
 
 import com.apppartner.androidprogrammertest.R;
 import com.apppartner.androidprogrammertest.models.ChatData;
+import com.apppartner.androidprogrammertest.util.CircleTransform;
+import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -55,8 +56,10 @@ public class ChatsArrayAdapter extends ArrayAdapter<ChatData>
     {
         ChatCell chatCell = new ChatCell();
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        convertView = inflater.inflate(R.layout.cell_chat, parent, false);
 
+        if( convertView == null ) {
+            convertView = inflater.inflate(R.layout.cell_chat, parent, false);
+        }
         chatCell.usernameTextView = (TextView) convertView.findViewById(R.id.usernameTextView);
         chatCell.messageTextView = (TextView) convertView.findViewById(R.id.messageTextView);
         chatCell.displayPicture=(ImageView)convertView.findViewById(R.id.imageView2);
@@ -64,54 +67,54 @@ public class ChatsArrayAdapter extends ArrayAdapter<ChatData>
 
         chatCell.usernameTextView.setText(chatData.username);
         chatCell.messageTextView.setText(chatData.message);
-
-        setImage(chatCell.displayPicture,chatData.avatarURL);
-//        chatCell.displayPicture.setImageBitmap((getImage(chatData.avatarURL)));
+        Picasso.with(getContext()).load(chatData.avatarURL).transform(new CircleTransform()).into(chatCell.displayPicture);
 
         return convertView;
+
     }
 
-    public void setImage(ImageView displayPicture,String url){
-            httpClient= new DefaultHttpClient();
-            httpget=new HttpGet(url);
-            final ImageView profileImage = displayPicture;
-        System.out.println(url);
-            new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try{
-                            httpResponse=httpClient.execute(httpget);
-                            HttpEntity responseEntity = httpResponse.getEntity();
-                            BufferedHttpEntity httpEntity = null;
-                            try {
-                                httpEntity = new BufferedHttpEntity(responseEntity);
-                            } catch (IOException e1) {
-                                // TODO Auto-generated catch block
-                                System.out.println("The error occured at place 2");
-                                e1.printStackTrace();
-                            }
-                            InputStream imageStream = null;
-                            try {
-                                imageStream = httpEntity.getContent();
-                            } catch (IOException e) {
-                                // TODO Auto-generated catch block
-                                System.out.println("The error occured at place 3");
-                                e.printStackTrace();
-                            }
-                            bmp = BitmapFactory.decodeStream(imageStream);
-
-                            // set image here
-                            profileImage.setImageBitmap(bmp);
-                        }
-                        catch(Exception e){
-                            System.out.println(e);
-                            System.out.println("The error occured at place 1");
-                            //alert box of image not loading
-                        }
-                    }
-                }).start();
-            return ;
-        }
+//    public void setImage(ImageView displayPicture,String url){
+//            httpClient= new DefaultHttpClient();
+//            httpget=new HttpGet(url);
+//            final ImageView profileImage = displayPicture;
+//            System.out.println(url);
+//
+//        new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        try{
+//                            httpResponse=httpClient.execute(httpget);
+//                            HttpEntity responseEntity = httpResponse.getEntity();
+//                            BufferedHttpEntity httpEntity = null;
+//                            try {
+//                                httpEntity = new BufferedHttpEntity(responseEntity);
+//                            } catch (IOException e1) {
+//                                // TODO Auto-generated catch block
+//                                System.out.println("The error occured at place 2");
+//                                e1.printStackTrace();
+//                            }
+//                            InputStream imageStream = null;
+//                            try {
+//                                imageStream = httpEntity.getContent();
+//                            } catch (IOException e) {
+//                                // TODO Auto-generated catch block
+//                                System.out.println("The error occured at place 3");
+//                                e.printStackTrace();
+//                            }
+//                            bmp = BitmapFactory.decodeStream(imageStream);
+//
+//                            // set image here
+//                            profileImage.setImageBitmap(bmp);
+//                        }
+//                        catch(Exception e){
+//                            System.out.println(e);
+//                            System.out.println("The error occured at place 1");
+//                            //alert box of image not loading
+//                        }
+//                    }
+//                }).start();
+//            return ;
+//        }
  /*   public Bitmap getRoundedShape(Bitmap scaleBitmapImage) {
         int targetWidth = 50;
         int targetHeight = 50;
