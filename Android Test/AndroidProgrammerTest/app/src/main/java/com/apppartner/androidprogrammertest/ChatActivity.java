@@ -29,7 +29,6 @@ public class ChatActivity extends ActionBarActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         listView = (ListView) findViewById(R.id.listView);
         chatDataArrayList = new ArrayList<ChatData>();
