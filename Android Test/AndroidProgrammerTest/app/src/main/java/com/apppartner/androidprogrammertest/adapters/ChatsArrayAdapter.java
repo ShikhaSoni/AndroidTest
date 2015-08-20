@@ -4,10 +4,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Path;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.os.AsyncTask;
-import android.util.Log;
+import android.graphics.RectF;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,6 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -64,17 +64,13 @@ public class ChatsArrayAdapter extends ArrayAdapter<ChatData>
 
         chatCell.usernameTextView.setText(chatData.username);
         chatCell.messageTextView.setText(chatData.message);
-
-        setImage(chatCell.displayPicture,chatData.avatarURL);
-//        chatCell.displayPicture.setImageBitmap((getImage(chatData.avatarURL)));
+        chatCell.displayPicture.setImageBitmap(getRoundedCornerBitmap((getImage(chatData.avatarURL))));
 
         return convertView;
     }
-
-    public void setImage(ImageView displayPicture,String url){
+    public Bitmap getImage(String url){
             httpClient= new DefaultHttpClient();
             httpget=new HttpGet(url);
-            final ImageView profileImage = displayPicture;
         System.out.println(url);
             new Thread(new Runnable() {
                     @Override
@@ -99,9 +95,6 @@ public class ChatsArrayAdapter extends ArrayAdapter<ChatData>
                                 e.printStackTrace();
                             }
                             bmp = BitmapFactory.decodeStream(imageStream);
-
-                            // set image here
-                            profileImage.setImageBitmap(bmp);
                         }
                         catch(Exception e){
                             System.out.println(e);
@@ -110,30 +103,29 @@ public class ChatsArrayAdapter extends ArrayAdapter<ChatData>
                         }
                     }
                 }).start();
-            return ;
+            return bmp;
         }
- /*   public Bitmap getRoundedShape(Bitmap scaleBitmapImage) {
-        int targetWidth = 50;
-        int targetHeight = 50;
-        Bitmap targetBitmap = Bitmap.createBitmap(targetWidth,
-                targetHeight,Bitmap.Config.ARGB_8888);
+    public static Bitmap getRoundedCornerBitmap(Bitmap bitmap) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+                bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
 
-        Canvas canvas = new Canvas(targetBitmap);
-        Path path = new Path();
-        path.addCircle(((float) targetWidth - 1) / 2,
-                ((float) targetHeight - 1) / 2,
-                (Math.min(((float) targetWidth),
-                        ((float) targetHeight)) / 2),
-                Path.Direction.CCW);
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        final RectF rectF = new RectF(rect);
+        final float roundPx = 12;
 
-        canvas.clipPath(path);
-        Bitmap sourceBitmap = scaleBitmapImage;
-        canvas.drawBitmap(sourceBitmap,
-                new Rect(0, 0, sourceBitmap.getWidth(),
-                        sourceBitmap.getHeight()),
-                new Rect(0, 0, targetWidth, targetHeight), null);
-        return targetBitmap;
-    }*/
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+
+        return output;
+    }
     private static class ChatCell
     {
         TextView usernameTextView;
