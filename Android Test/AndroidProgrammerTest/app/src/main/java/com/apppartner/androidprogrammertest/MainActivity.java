@@ -1,5 +1,6 @@
 package com.apppartner.androidprogrammertest;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,7 +29,6 @@ public class MainActivity extends ActionBarActivity
             showAlert();
         }
         else{
-            visited=true;
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }

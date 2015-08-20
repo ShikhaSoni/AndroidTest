@@ -108,6 +108,7 @@ public class LoginActivity extends ActionBarActivity
                 runOnUiThread(new Runnable() {
                     public void run() {
                         Toast.makeText(LoginActivity.this,"Login Success, Time taken:"+difference+"ms", Toast.LENGTH_SHORT).show();
+                        MainActivity.visited=true;
                     }
                 });
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
