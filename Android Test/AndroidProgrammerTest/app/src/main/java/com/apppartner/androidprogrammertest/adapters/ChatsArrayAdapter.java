@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Path;
+import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +29,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+
+import android.graphics.Canvas;
 
 /**
  * Created on 12/23/14.
@@ -60,14 +64,14 @@ public class ChatsArrayAdapter extends ArrayAdapter<ChatData>
 
         chatCell.usernameTextView.setText(chatData.username);
         chatCell.messageTextView.setText(chatData.message);
-        chatCell.displayPicture.setImageBitmap(getImage(chatData.avatarURL));
+        chatCell.displayPicture.setImageBitmap((getImage(chatData.avatarURL)));
 
         return convertView;
     }
     public Bitmap getImage(String url){
             httpClient= new DefaultHttpClient();
             httpget=new HttpGet(url);
-            System.out.println(url);
+        System.out.println(url);
             new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -101,11 +105,33 @@ public class ChatsArrayAdapter extends ArrayAdapter<ChatData>
                 }).start();
             return bmp;
         }
+ /*   public Bitmap getRoundedShape(Bitmap scaleBitmapImage) {
+        int targetWidth = 50;
+        int targetHeight = 50;
+        Bitmap targetBitmap = Bitmap.createBitmap(targetWidth,
+                targetHeight,Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(targetBitmap);
+        Path path = new Path();
+        path.addCircle(((float) targetWidth - 1) / 2,
+                ((float) targetHeight - 1) / 2,
+                (Math.min(((float) targetWidth),
+                        ((float) targetHeight)) / 2),
+                Path.Direction.CCW);
+
+        canvas.clipPath(path);
+        Bitmap sourceBitmap = scaleBitmapImage;
+        canvas.drawBitmap(sourceBitmap,
+                new Rect(0, 0, sourceBitmap.getWidth(),
+                        sourceBitmap.getHeight()),
+                new Rect(0, 0, targetWidth, targetHeight), null);
+        return targetBitmap;
+    }*/
     private static class ChatCell
     {
         TextView usernameTextView;
         TextView messageTextView;
         ImageView displayPicture;
     }
-    }
+}
 
