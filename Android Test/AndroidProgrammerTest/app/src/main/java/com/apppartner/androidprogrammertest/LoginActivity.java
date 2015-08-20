@@ -1,6 +1,5 @@
 package com.apppartner.androidprogrammertest;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -8,15 +7,12 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -24,11 +20,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.impl.client.BasicResponseHandler;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends ActionBarActivity
@@ -47,6 +41,9 @@ public class LoginActivity extends ActionBarActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Typeface typ=Typeface.createFromAsset(getAssets(), "Jelloween - Machinato.ttf");
         EditText ed1=(EditText)findViewById(R.id.Username);
         ed1.setTypeface(typ);
@@ -75,6 +72,17 @@ public class LoginActivity extends ActionBarActivity
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+            case android.R.id.home:
+                Intent intent = new Intent(this,MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+        }
+        return true;
+    }
+    @Override
     public void onBackPressed()
     {
         Intent intent = new Intent(this, MainActivity.class);
@@ -84,14 +92,19 @@ public class LoginActivity extends ActionBarActivity
         try{
             httpclient=new DefaultHttpClient();
             httppost= new HttpPost("http://dev.apppartner.com/AppPartnerProgrammerTest/scripts/login.php");
-            nameValuePairs = new ArrayList<NameValuePair>(2);
+            nameValuePairs = new ArrayList<>(2);
             nameValuePairs.add(new BasicNameValuePair("username",usernamet.getText().toString().trim()));
             nameValuePairs.add(new BasicNameValuePair("password",passwordt.getText().toString().trim()));
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             //Execute HTTP Post Request
+            long lStartTime = new Date().getTime();
+            //some tasks
+
             response=httpclient.execute(httppost);
             //extract the time taken for the api call
+            long lEndTime = new Date().getTime();
 
+            final long difference = lEndTime - lStartTime;
             //Response alert Dialogue
             ResponseHandler<String> responseHandler = new BasicResponseHandler();
             final String response = httpclient.execute(httppost, responseHandler);
@@ -100,7 +113,7 @@ public class LoginActivity extends ActionBarActivity
             if(response.equalsIgnoreCase("{\"code\":\"Success\",\"message\":\"Login Successful!\"}")){
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        Toast.makeText(LoginActivity.this,"Login Success", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this,"Login Success, Time taken:"+difference+"ms", Toast.LENGTH_SHORT).show();
                     }
                 });
 

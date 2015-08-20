@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.apppartner.androidprogrammertest.LoginActivity"
-    android:background="@drawable/bg_login">
+    android:background="@drawable/bg_login"
+    android:parentActivityName="activity_main">
 
     <ImageButton
         android:layout_width="250dp"

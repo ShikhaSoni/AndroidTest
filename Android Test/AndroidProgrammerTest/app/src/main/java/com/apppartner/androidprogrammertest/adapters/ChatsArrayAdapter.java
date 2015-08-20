@@ -2,11 +2,7 @@ package com.apppartner.androidprogrammertest.adapters;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.os.AsyncTask;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,16 +15,10 @@ import com.apppartner.androidprogrammertest.models.ChatData;
 import com.apppartner.androidprogrammertest.util.CircleTransform;
 import com.squareup.picasso.Picasso;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.BufferedHttpEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.client.methods.HttpGet;;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import android.graphics.Canvas;
@@ -72,71 +62,6 @@ public class ChatsArrayAdapter extends ArrayAdapter<ChatData>
         return convertView;
 
     }
-
-//    public void setImage(ImageView displayPicture,String url){
-//            httpClient= new DefaultHttpClient();
-//            httpget=new HttpGet(url);
-//            final ImageView profileImage = displayPicture;
-//            System.out.println(url);
-//
-//        new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        try{
-//                            httpResponse=httpClient.execute(httpget);
-//                            HttpEntity responseEntity = httpResponse.getEntity();
-//                            BufferedHttpEntity httpEntity = null;
-//                            try {
-//                                httpEntity = new BufferedHttpEntity(responseEntity);
-//                            } catch (IOException e1) {
-//                                // TODO Auto-generated catch block
-//                                System.out.println("The error occured at place 2");
-//                                e1.printStackTrace();
-//                            }
-//                            InputStream imageStream = null;
-//                            try {
-//                                imageStream = httpEntity.getContent();
-//                            } catch (IOException e) {
-//                                // TODO Auto-generated catch block
-//                                System.out.println("The error occured at place 3");
-//                                e.printStackTrace();
-//                            }
-//                            bmp = BitmapFactory.decodeStream(imageStream);
-//
-//                            // set image here
-//                            profileImage.setImageBitmap(bmp);
-//                        }
-//                        catch(Exception e){
-//                            System.out.println(e);
-//                            System.out.println("The error occured at place 1");
-//                            //alert box of image not loading
-//                        }
-//                    }
-//                }).start();
-//            return ;
-//        }
- /*   public Bitmap getRoundedShape(Bitmap scaleBitmapImage) {
-        int targetWidth = 50;
-        int targetHeight = 50;
-        Bitmap targetBitmap = Bitmap.createBitmap(targetWidth,
-                targetHeight,Bitmap.Config.ARGB_8888);
-
-        Canvas canvas = new Canvas(targetBitmap);
-        Path path = new Path();
-        path.addCircle(((float) targetWidth - 1) / 2,
-                ((float) targetHeight - 1) / 2,
-                (Math.min(((float) targetWidth),
-                        ((float) targetHeight)) / 2),
-                Path.Direction.CCW);
-
-        canvas.clipPath(path);
-        Bitmap sourceBitmap = scaleBitmapImage;
-        canvas.drawBitmap(sourceBitmap,
-                new Rect(0, 0, sourceBitmap.getWidth(),
-                        sourceBitmap.getHeight()),
-                new Rect(0, 0, targetWidth, targetHeight), null);
-        return targetBitmap;
-    }*/
     private static class ChatCell
     {
         TextView usernameTextView;

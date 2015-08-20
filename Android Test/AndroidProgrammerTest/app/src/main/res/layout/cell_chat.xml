@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:parentActivityName="activity_main">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -11,6 +12,7 @@
         android:id="@+id/imageView2"
         android:contentDescription="@string/UserPhoto"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginBottom="10dp"
         />
 
@@ -19,13 +21,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+     <TextView
         android:id="@+id/usernameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:paddingLeft="50dp"
+        android:paddingLeft="20dp"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:textSize="12.5pt"
         android:textColor="#000000" />
@@ -35,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:paddingLeft="50dp"
+        android:paddingLeft="20dp"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:textSize="8pt"
         android:textColor="#000000"
