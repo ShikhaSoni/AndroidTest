@@ -3,6 +3,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,13 @@ public class ChatsArrayAdapter extends ArrayAdapter<ChatData>
         chatCell.usernameTextView.setText(chatData.username);
         chatCell.messageTextView.setText(chatData.message);
         Picasso.with(getContext()).load(chatData.avatarURL).transform(new CircleTransform()).into(chatCell.displayPicture);
+
+        TextView userNameTextView = (TextView)convertView.findViewById(R.id.usernameTextView);
+        TextView messageTextView = (TextView)convertView.findViewById(R.id.messageTextView);
+
+        userNameTextView.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"Jelloween - Machinato.ttf"));
+        messageTextView.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"Jelloween - Machinato Light.ttf"));
+
 
         return convertView;
 
