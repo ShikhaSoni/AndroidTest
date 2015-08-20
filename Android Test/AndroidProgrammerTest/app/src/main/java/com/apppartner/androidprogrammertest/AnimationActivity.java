@@ -16,7 +16,6 @@ import android.widget.ImageView;
 
 public class AnimationActivity extends ActionBarActivity implements View.OnTouchListener
 {
-
     float x, y=0.0f;
     boolean moving =false;
     ImageView image;
