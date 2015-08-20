@@ -1,6 +1,7 @@
 package com.apppartner.androidprogrammertest;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -8,13 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.apppartner.androidprogrammertest.adapters.ChatsArrayAdapter;
 import com.apppartner.androidprogrammertest.models.ChatData;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,6 +33,15 @@ public class ChatActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+      /*  Typeface typ= Typeface.createFromAsset(getAssets(),"Jelloween - Machinato.ttf");
+        TextView tv = (TextView)findViewById(R.id.usernameTextView);
+        tv.setTypeface(typ);
+
+
+        Typeface typ2= Typeface.createFromAsset(getAssets(),"Jelloween - Machinato Light.ttf");
+        TextView tv2 = (TextView)findViewById(R.id.messageTextView);
+        tv2.setTypeface(typ2);*/
+
         listView = (ListView) findViewById(R.id.listView);
         chatDataArrayList = new ArrayList<ChatData>();
 
@@ -49,7 +56,7 @@ public class ChatActivity extends ActionBarActivity
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 ChatData chatData = new ChatData(jsonObject);
                 chatDataArrayList.add(chatData);
-            }
+        }
         }
         catch (Exception e)
         {

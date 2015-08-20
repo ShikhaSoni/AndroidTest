@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">AndroidProgrammerTest</string>
+    <string name="app_name">Chat</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="animation_button">Animation Test</string>
@@ -12,6 +12,7 @@
     <string name="LoginPageTitle">Login</string>
     <string name="Password">password</string>
     <string name="FadeButton">FadeButton</string>
-    <string name="Logo">AppLogo</string>string>
+    <string name="Logo">AppLogo</string>
+    <string name="UserPhoto">UsePhoto</string>string>
 
 </resources>

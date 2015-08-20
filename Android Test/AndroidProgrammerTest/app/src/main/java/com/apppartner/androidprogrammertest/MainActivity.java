@@ -18,6 +18,7 @@ public class MainActivity extends ActionBarActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Typeface typ= Typeface.createFromAsset(getAssets(),"Jelloween - Machinato Bold.ttf");
         TextView tv = (TextView)findViewById(R.id.textView);
         tv.setTypeface(typ);
