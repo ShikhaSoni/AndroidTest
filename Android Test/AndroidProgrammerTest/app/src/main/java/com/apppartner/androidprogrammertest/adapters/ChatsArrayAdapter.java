@@ -64,13 +64,17 @@ public class ChatsArrayAdapter extends ArrayAdapter<ChatData>
 
         chatCell.usernameTextView.setText(chatData.username);
         chatCell.messageTextView.setText(chatData.message);
-        chatCell.displayPicture.setImageBitmap((getImage(chatData.avatarURL)));
+
+        setImage(chatCell.displayPicture,chatData.avatarURL);
+//        chatCell.displayPicture.setImageBitmap((getImage(chatData.avatarURL)));
 
         return convertView;
     }
-    public Bitmap getImage(String url){
+
+    public void setImage(ImageView displayPicture,String url){
             httpClient= new DefaultHttpClient();
             httpget=new HttpGet(url);
+            final ImageView profileImage = displayPicture;
         System.out.println(url);
             new Thread(new Runnable() {
                     @Override
@@ -95,6 +99,9 @@ public class ChatsArrayAdapter extends ArrayAdapter<ChatData>
                                 e.printStackTrace();
                             }
                             bmp = BitmapFactory.decodeStream(imageStream);
+
+                            // set image here
+                            profileImage.setImageBitmap(bmp);
                         }
                         catch(Exception e){
                             System.out.println(e);
@@ -103,7 +110,7 @@ public class ChatsArrayAdapter extends ArrayAdapter<ChatData>
                         }
                     }
                 }).start();
-            return bmp;
+            return ;
         }
  /*   public Bitmap getRoundedShape(Bitmap scaleBitmapImage) {
         int targetWidth = 50;
