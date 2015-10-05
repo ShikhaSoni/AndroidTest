@@ -24,11 +24,6 @@ import java.util.List;
 
 import android.graphics.Canvas;
 
-/**
- * Created on 12/23/14.
- *
- * @author Thomas Colligan
- */
 public class ChatsArrayAdapter extends ArrayAdapter<ChatData>
 {
     HttpGet httpget;
