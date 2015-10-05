@@ -5,11 +5,6 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Created on 12/23/14.
- *
- * @author Thomas Colligan
- */
 public class ChatData
 {
     private static final String LOG_TAG = "ChatData";
